@@ -26,7 +26,7 @@ const StartMeeting: React.FC<StartMeetingProps> = ({ text, roomId, setText, setR
           <TextInput
             style={styles.textInput}
             value={roomId}
-            placeholder="Enter roomId"
+            placeholder="Enter room id"
             placeholderTextColor="#767476"
             onChangeText={(text) => setRoomId(text)}
           ></TextInput>
