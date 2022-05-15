@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-function MeetingRoom() {
+const MeetingRoom: React.FC = () => {
   return (
     <View>
       <Text>MeetingRoom</Text>
     </View>
   );
-}
+};
 
 export default MeetingRoom;

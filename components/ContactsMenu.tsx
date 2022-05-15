@@ -24,7 +24,7 @@ const contactsMenuButtons = [
   },
 ];
 
-function ContactsMenu() {
+const ContactsMenu: React.FC = () => {
   return (
     <View>
       {contactsMenuButtons.map((contact, index) => (
@@ -41,7 +41,7 @@ function ContactsMenu() {
       ))}
     </View>
   );
-}
+};
 
 export default ContactsMenu;
 

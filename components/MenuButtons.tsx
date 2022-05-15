@@ -28,7 +28,11 @@ const items = [
   },
 ];
 
-function MenuButtons({ navigation }: { navigation: RootStackNavigationProp }) {
+type MenuButtonProps = {
+  navigation: RootStackNavigationProp;
+};
+
+const MenuButtons: React.FC<MenuButtonProps> = ({ navigation }) => {
   const openMeeting = () => {
     navigation.navigate("Room");
   };
@@ -48,7 +52,7 @@ function MenuButtons({ navigation }: { navigation: RootStackNavigationProp }) {
       ))}
     </View>
   );
-}
+};
 
 export default MenuButtons;
 

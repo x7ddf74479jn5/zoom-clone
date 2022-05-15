@@ -2,14 +2,14 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Fontiso from "react-native-vector-icons/Fontisto";
 
-function SearchBar() {
+const SearchBar: React.FC = () => {
   return (
     <View style={styles.container}>
       <Fontiso name="search" size={20} color="#858585" />
       <Text style={styles.textSearchBar}>Search</Text>
     </View>
   );
-}
+};
 
 export default SearchBar;
 

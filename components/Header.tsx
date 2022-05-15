@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
 
-function Header() {
+const Header: React.FC = () => {
   return (
     <View style={styles.container}>
       <Entypo name="notification" size={30} color="#efefef" />
@@ -10,7 +10,7 @@ function Header() {
       <Entypo name="new-message" size={30} color="#efefef" />
     </View>
   );
-}
+};
 
 export default Header;
 

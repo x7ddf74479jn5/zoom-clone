@@ -7,7 +7,9 @@ import Header from "../components/Header";
 import MenuButtons from "../components/MenuButtons";
 import SearchBar from "../components/SearchBar";
 
-function Home({ navigation }: { navigation: RootStackNavigationProp }) {
+type HomeProps = { navigation: RootStackNavigationProp };
+
+const Home: React.FC<HomeProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <SafeAreaView style={{ height: "100%" }}>
@@ -18,7 +20,7 @@ function Home({ navigation }: { navigation: RootStackNavigationProp }) {
       </SafeAreaView>
     </View>
   );
-}
+};
 
 export default Home;
 
