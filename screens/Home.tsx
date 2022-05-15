@@ -1,17 +1,19 @@
 import React from "react";
 import { SafeAreaView, View, StyleSheet } from "react-native";
+
+import type { RootStackNavigationProp } from "../Navigation";
 import ContactsMenu from "../components/ContactsMenu";
 import Header from "../components/Header";
 import MenuButtons from "../components/MenuButtons";
 import SearchBar from "../components/SearchBar";
 
-function Home() {
+function Home({ navigation }: { navigation: RootStackNavigationProp }) {
   return (
     <View style={styles.container}>
       <SafeAreaView style={{ height: "100%" }}>
         <Header />
         <SearchBar />
-        <MenuButtons />
+        <MenuButtons navigation={navigation} />
         <ContactsMenu />
       </SafeAreaView>
     </View>
