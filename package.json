@@ -1,0 +1,12 @@
+{
+  "name": "zoom-clone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "x7ddf74479jn5 <x7ddf74479jn5@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "api",
+    "frontend"
+  ]
+}
