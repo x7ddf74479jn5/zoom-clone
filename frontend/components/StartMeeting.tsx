@@ -7,9 +7,10 @@ type StartMeetingProps = {
   roomId: string;
   setName: (name: string) => void;
   setRoomId: (roomId: string) => void;
+  joinRoom: () => void;
 };
 
-const StartMeeting: React.FC<StartMeetingProps> = ({ name, roomId, setName, setRoomId }) => {
+const StartMeeting: React.FC<StartMeetingProps> = ({ name, roomId, setName, setRoomId, joinRoom }) => {
   return (
     <View style={styles.startMeetingContainer}>
       <View style={styles.info}>
@@ -32,7 +33,7 @@ const StartMeeting: React.FC<StartMeetingProps> = ({ name, roomId, setName, setR
       </View>
 
       <View style={{ alignItems: "center" }}>
-        <TouchableOpacity style={styles.startMeetingButton} onPress={() => {}}>
+        <TouchableOpacity style={styles.startMeetingButton} onPress={() => joinRoom()}>
           <Text style={styles.startMeetingText}>Start Meeting</Text>
         </TouchableOpacity>
       </View>
