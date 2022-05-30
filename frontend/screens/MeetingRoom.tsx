@@ -41,7 +41,7 @@ let socket: Socket;
 const MeetingRoom: React.FC = () => {
   const [name, setName] = useState("");
   const [roomId, setRoomId] = useState("");
-  const [activeUsers, setActiveUsers] = useState<User[]>(["Naz", "Joey"]);
+  const [activeUsers, setActiveUsers] = useState<User[]>([]);
   const [startCamera, setStartCamera] = useState(false);
 
   const __startCamera = async () => {
@@ -66,8 +66,7 @@ const MeetingRoom: React.FC = () => {
     socket.on("connection", () => {
       console.log("connected");
     });
-    socket.on("all-users", (users) => {
-      console.log("Active users: ", users);
+    socket.on("all-users", (users: User[]) => {
       setActiveUsers(users);
     });
   }, []);
@@ -88,13 +87,15 @@ const MeetingRoom: React.FC = () => {
             <View style={styles.cameraContainer}>
               <Camera
                 type={CameraType.front}
-                style={{ width: activeUsers.length === 0 ? "100%" : 200, height: activeUsers.length === 0 ? 600 : 200 }}
+                style={{ width: activeUsers.length <= 1 ? "100%" : 200, height: activeUsers.length <= 1 ? 600 : 200 }}
               ></Camera>
-              {activeUsers.map((user, index) => (
-                <View key={index} style={styles.activeUserContainer}>
-                  <Text style={{ color: "white " }}>{user}</Text>
-                </View>
-              ))}
+              {activeUsers
+                .filter((user) => user.userName !== name)
+                .map((user, index) => (
+                  <View key={index} style={styles.activeUserContainer}>
+                    <Text style={{ color: "white " }}>{user.userName}</Text>
+                  </View>
+                ))}
             </View>
           </View>
           <View style={styles.menu}>
