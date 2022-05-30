@@ -37,11 +37,12 @@ server.ready().then(() => {
     socket.on("join-room", ({ roomId, userName }: Message) => {
       console.log("someone joined the room");
       console.log(roomId, userName);
-      socket.join(roomId);
-      addUser(userName, roomId);
-      socket.to(roomId).emit("user-connected", userName);
-
-      server.io.to(roomId).emit("all-users", getRoomUsers(roomId));
+      if (roomId && userName) {
+        socket.join(roomId);
+        addUser(userName, roomId);
+        socket.to(roomId).emit("user-connected", userName);
+        server.io.to(roomId).emit("all-users", getRoomUsers(roomId));
+      }
 
       socket.on("disconnect", () => {
         console.log("user disconnected");

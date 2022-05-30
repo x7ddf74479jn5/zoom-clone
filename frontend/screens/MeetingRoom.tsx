@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, View, Text, Alert } from "react-native";
+import { Modal, StyleSheet, View, Text, Alert } from "react-native";
 import { io } from "socket.io-client";
 import type { Socket } from "socket.io-client";
 import { API_URL } from "@env";
@@ -11,6 +11,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import type { User } from "../../shared/types";
 
 import StartMeeting from "../components/StartMeeting";
+import Chat from "../components/Chat";
 
 const menuItems = [
   {
@@ -43,6 +44,7 @@ const MeetingRoom: React.FC = () => {
   const [roomId, setRoomId] = useState("");
   const [activeUsers, setActiveUsers] = useState<User[]>([]);
   const [startCamera, setStartCamera] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const __startCamera = async () => {
     const { status } = await Camera.requestCameraPermissionsAsync();
@@ -83,6 +85,18 @@ const MeetingRoom: React.FC = () => {
     <View style={styles.container}>
       {startCamera ? (
         <SafeAreaView style={{ flex: 1 }}>
+          <Modal
+            animationType="slide"
+            transparent={false}
+            presentationStyle="fullScreen"
+            visible={modalVisible}
+            onRequestClose={() => {
+              setModalVisible(false);
+            }}
+          >
+            <Chat modalVisible={modalVisible} setModalVisible={setModalVisible} />
+          </Modal>
+
           <View style={styles.activeUsersContainer}>
             <View style={styles.cameraContainer}>
               <Camera
@@ -105,6 +119,10 @@ const MeetingRoom: React.FC = () => {
                 <Text style={styles.textTile}>{item.title}</Text>
               </TouchableOpacity>
             ))}
+            <TouchableOpacity style={styles.tile} onPress={() => setModalVisible(true)}>
+              <FontAwesome name="comment" size={24} />
+              <Text style={styles.textTile}>Chat</Text>
+            </TouchableOpacity>
           </View>
         </SafeAreaView>
       ) : (
